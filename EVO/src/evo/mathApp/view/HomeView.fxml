@@ -27,11 +27,11 @@ for (int i = 0; i < columnNames.size(); i++) {
 }
  -->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="evo.mathApp.view.FXMLController">
    <top>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="61.0" prefWidth="592.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <VBox alignment="CENTER" prefHeight="61.0" prefWidth="592.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" >
                <children>
                   <AnchorPane>
                      <children>
@@ -44,7 +44,7 @@ for (int i = 0; i < columnNames.size(); i++) {
                   </AnchorPane>
                   <HBox alignment="CENTER" spacing="3.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Keyboard" />
+                        <Button mnemonicParsing="false" text="Keyboard" onAction="#keyboardClicked"/>
                         <TextField alignment="CENTER" prefWidth="400.0" promptText="Enter math problem to compute" />
                         <Button mnemonicParsing="false" text="Go" />
                      </children>
