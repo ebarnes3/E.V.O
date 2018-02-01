@@ -29,10 +29,10 @@
         </entry>
       </file>
       <file leaf-file-name="FXMLController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/evo/mathApp/view/FXMLController.java">
+        <entry file="file://$PROJECT_DIR$/src/evo/mathApp/FXMLController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+            <state relative-caret-position="627">
+              <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,6 +81,7 @@
         <option value="$PROJECT_DIR$/src/evo/mathApp/MainApp.java" />
         <option value="$PROJECT_DIR$/src/evo/mathApp/view/HomeView.fxml" />
         <option value="$PROJECT_DIR$/src/evo/mathApp/view/FXMLController.java" />
+        <option value="$PROJECT_DIR$/src/evo/mathApp/FXMLController.java" />
       </list>
     </option>
   </component>
@@ -398,10 +399,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/evo/mathApp/view/FXMLController.java">
+    <entry file="file://$PROJECT_DIR$/src/evo/mathApp/FXMLController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+        <state relative-caret-position="627">
+          <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
