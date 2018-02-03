@@ -39,7 +39,7 @@ for (int i = 0; i < columnNames.size(); i++) {
                <children>
                   <AnchorPane>
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Welcome to [App Name]" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Welcome to Daylight" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>
