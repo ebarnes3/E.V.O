@@ -13,12 +13,9 @@ public class FXMLController {
     protected void keyboardClicked(ActionEvent event) {
         if(displayKeyboard == false){
             displayKeyboard = true;
-
         }
         else if(displayKeyboard == true){
             displayKeyboard = false;
-            
-
         }else{
             System.out.println("Boolean error with displayKeyboard");
         }

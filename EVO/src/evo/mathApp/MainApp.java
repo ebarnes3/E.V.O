@@ -34,9 +34,6 @@ public class MainApp extends Application {
 	            // Show the scene containing the root layout.
 	            Scene scene = new Scene(rootLayout);
 
-
-
-
 	            primaryStage.setScene(scene);
 	            primaryStage.show();
 	        } catch (IOException e) {
@@ -53,7 +50,7 @@ public class MainApp extends Application {
 
 	            // Set person overview into the center of root layout.
 	            rootLayout.setCenter(HomeView);
-	        } catch (IOException e) {
+	         } catch (IOException e) {
 	            e.printStackTrace();
 	            System.out.println("Error:");
 	        }
