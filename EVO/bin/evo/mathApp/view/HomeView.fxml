@@ -46,14 +46,9 @@ for (int i = 0; i < columnNames.size(); i++) {
                         </Label>
                      </children>
                   </AnchorPane>
-                   <VBox visible="true">
-                       <fx:define>
-                           <ToggleGroup fx:id="toggleKeyboard"/>
-                       </fx:define>
+                   <VBox fx:id="keyboardVisability">
                        <children>
-                           <RadioButton text="A" />
-                           <RadioButton text="B" />
-                           <RadioButton text="C" />
+
                        </children>
                    </VBox>
                   <HBox alignment="CENTER" spacing="3.0">
