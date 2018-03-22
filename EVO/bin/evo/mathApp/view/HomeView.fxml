@@ -51,6 +51,7 @@ for (int i = 0; i < columnNames.size(); i++) {
                         <HBox alignment="CENTER" spacing="3.0">
                             <children>
                                 <Button fx:id="keyboardButton" mnemonicParsing="false" text="Keyboard" />
+                                <Button fx:id="randomGenerator" mnemonicParsing="false" text="Random Question" />
                                 <TextField fx:id="inputTextField" alignment="CENTER" prefWidth="400.0" promptText="Enter math problem to compute" />
                                 <Button fx:id="goButton" mnemonicParsing="false" text="Go" />
                             </children>

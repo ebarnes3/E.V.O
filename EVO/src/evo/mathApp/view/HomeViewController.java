@@ -20,51 +20,58 @@ import evo.mathApp.model.InToPost;
 import evo.mathApp.model.MathProblem;
 import javafx.scene.paint.Color;
 
+import static evo.mathApp.view.problemGenerator.parExpression;
+import static evo.mathApp.view.problemGenerator.raNum;
+import static evo.mathApp.view.problemGenerator.validExpression;
+
 public class HomeViewController {
 
 	@FXML
     private Label keyboardLabel;
-	
+
 	@FXML
     private Button keyboardButton;
-	
+
 	@FXML
     private Button goButton;
-	 
-	@FXML 
+
+	@FXML
+    private Button randomGenerator;
+
+	@FXML
 	private VBox keyboardVisability;
-	
-	@FXML 
+
+	@FXML
 	private TextField inputTextField;
-	
+
 	@FXML
     private Label answerLabel;
-	
+
 	@FXML
     private Button viewStepsButton;
-	
+
 	@FXML
 	private AnchorPane initialSolutionPane;
-	
+
 	@FXML
 	private AnchorPane stepsAnchorPane;
-	
-	@FXML 
+
+	@FXML
 	private VBox solutionStepsVBox;
-	
-	@FXML 
+
+	@FXML
 	private HBox topHBox;
-	
+
 	private boolean displayKeyboard = false;
-	
+
 	private String input;
 	private String output;
 	private String solution;
 	// Reference to the main application.
     private MainApp mainApp;
-    
+
     public HomeViewController() { //empty constructor
-    	
+
     }
 
     /**
@@ -73,11 +80,11 @@ public class HomeViewController {
      */
     @FXML
     private void initialize() {
-    	//solutionStepsVBox.setVisible(false); //hides solution and steps 
+    	//solutionStepsVBox.setVisible(false); //hides solution and steps
     initialSolutionPane.setVisible(false);
     stepsAnchorPane.setVisible(false);
       keyboardButton.setOnAction((event) -> {
-    	  
+
     	  if(displayKeyboard == false){
               displayKeyboard = true;
               final Button okButton = new Button("OK");
@@ -131,28 +138,46 @@ public class HomeViewController {
               System.out.println("Boolean error with displayKeyboard");
           }
       }); //end of keyboardButton action Handler
-      
+
       goButton.setOnAction((event) -> {
     	  initialSolutionPane.setVisible(true);
     	  input = inputTextField.getText();
     	  InToPost theTrans = new InToPost(input);
-    	  output = theTrans.doTrans(); 
+    	  theTrans.signs();
+    	  String truExpression = theTrans.handleNegativeNumber();
+    	  output = theTrans.doTrans(truExpression);
       output = theTrans.editExpression(output);
       solution = theTrans.calculate(output,input);
       answerLabel.setText(solution);
       answerLabel.setTextFill(Color.web("#0076a3"));
       });//end of goButton action handler
-      
+
       viewStepsButton.setOnAction((event) -> {
     	  stepsAnchorPane.setVisible(true);
       });
-      
+
+      randomGenerator.setOnAction((event) -> {
+          String expression = "";
+          int first = (int) Math.floor(Math.random()*15)+2;
+          expression = expression + first;
+          int numOfNums = (int) Math.floor(Math.random() * 5) + 5; // 6 - 10
+          for(int i = 0; i < numOfNums - 1; i++) {
+              expression = expression + raNum();
+          }
+          System.out.println("Raw: " + expression);
+          expression = parExpression(expression);
+          System.out.println("Par: " + expression);
+          expression = validExpression(expression);
+          System.out.println("Fin: " + expression);
+          inputTextField.setText(expression);
+      });
+
     } //end of initializer
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
 
     }
-    
-   
-	
+
+
+
 }
