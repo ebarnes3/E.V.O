@@ -22,10 +22,10 @@ public class InputChecker {
 //        validSimpChar(userInput);
 //        System.out.println(userInput);
 //    }
-    //this function ensures that the parenthesis are correct
     public InputChecker(){
 
     }
+    //this function ensures that the parenthesis are correct
     public  void parMatch(String entry) {
         int parens = 0;
         for (int i =0; i<entry.length();i++) {
