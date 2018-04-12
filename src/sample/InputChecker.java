@@ -1,23 +1,32 @@
 package sample;
 //this portion of code ensures that the string the user inputs is a valid expression. This checker does not allow any variables.
+import jdk.internal.util.xml.impl.Input;
+
+import java.util.HashSet;
 import java.util.Scanner;
 public class InputChecker {
-    public static void main (String args[]) {
-        String userInput;
-        //ask user for input until the input is not an empty string
-        do {
-            Scanner scan = new Scanner(System.in);
-            userInput = scan.nextLine();
-            userInput = userInput.replaceAll("\\s", ""); //Remove all whitespaces from entered string
-        }while (userInput.isEmpty());
-        parMatch(userInput);
-        userInput= dotCheck(userInput);
-        userInput = parenthesisOp(userInput);
-        validSimpChar(userInput);
-        System.out.println(userInput);
-    }
+    HashSet<String> returnErrors = new HashSet<String>();
+    Boolean valid = true;
+
+//    public static void main (String args[]) {
+//        String userInput;
+//        //ask user for input until the input is not an empty string
+//        do {
+//            Scanner scan = new Scanner(System.in);
+//            userInput = scan.nextLine();
+//            userInput = userInput.replaceAll("\\s", ""); //Remove all whitespaces from entered string
+//        }while (userInput.isEmpty());
+//        parMatch(userInput);
+//        userInput= dotCheck(userInput);
+//        userInput = parenthesisOp(userInput);
+//        validSimpChar(userInput);
+//        System.out.println(userInput);
+//    }
     //this function ensures that the parenthesis are correct
-    public static void parMatch(String entry) {
+    public InputChecker(){
+
+    }
+    public  void parMatch(String entry) {
         int parens = 0;
         for (int i =0; i<entry.length();i++) {
             if(entry.charAt(i) =='(') {
@@ -27,23 +36,27 @@ public class InputChecker {
                 parens--;
             }
             if(parens < 0) {
-                System.out.println("Parentheses do not match.");
-                System.exit(0);
+                returnErrors.add("Parentheses do not match.");
+                //System.out.println("Parentheses do not match.");
+                valid = false;
             }
         }
         if(parens != 0) {
-            System.out.println("Parentheses do not match.");
-            System.exit(0);
+            returnErrors.add("Parentheses do not match.");
+            //System.out.println("Parentheses do not match.");
+            valid = false;
         }
     }
     //verfies decimals and adds 0 to decimals. Ex. .23 = 0.23
-    public static String dotCheck (String entry) {
+    public String dotCheck (String entry) {
         if(entry.charAt(0) == '.') {
             entry = "0" + entry;
         }
         if(entry.charAt(entry.length()-1) == '.') {
-            System.out.println("Last term cannot end in '.'");
-            System.exit(0);
+            returnErrors.add("Last term cannot end in '.'");
+            //System.out.println("Last term cannot end in '.'");
+            valid = false;
+            //System.exit(0);
         }
         for(int i=1; i<entry.length(); i++) {
             if(entry.charAt(i) == '.') {
@@ -66,8 +79,10 @@ public class InputChecker {
                         dotCount++;
                     }
                     if(dotCount>1){
-                        System.out.println("Incorrect decimals detected");
-                        System.exit(0);
+                        returnErrors.add("Incorrect decimals detected");
+                        //System.out.println("Incorrect decimals detected");
+                       // System.exit(0);
+                        valid = false;
                     }
                 }
             }
@@ -75,7 +90,7 @@ public class InputChecker {
         return entry;
     }
     //if the user does not have a * when they are entering a string with parentheses, parenthesisOp will add it.
-    public static String parenthesisOp (String entry) {
+    public String parenthesisOp (String entry) {
         for(int i=1; i<entry.length()-1; i++) {
             char temp = entry.charAt(i);
             if(temp == '('){
@@ -92,10 +107,12 @@ public class InputChecker {
         return entry;
     }
     //this function checks to make sure that if an operation or parenthesis is used that the character on both sides are valid
-    public static void validSimpChar (String entry) {
+    public void validSimpChar (String entry) {
         if((isOp(entry.charAt(0)) || isOp(entry.charAt(entry.length()-1))) && entry.charAt(0) != '-') {
-            System.out.println("First/Last character is invalid.");
-            System.exit(0);
+            returnErrors.add("First/Last character is invalid.");
+            //System.out.println("First/Last character is invalid.");
+            //System.exit(0);
+            valid = false;
         }
         for (int i=1; i<entry.length()-1; i++) {
             char temp = entry.charAt(i);
@@ -105,33 +122,43 @@ public class InputChecker {
                 switch(temp) {
                     case '(':
                         if(!isOp(tempa) && tempa != '(') {
-                            System.out.println("Invalid entry.");
-                            System.exit(0);
+                            returnErrors.add("Invalid entry.");
+                            //System.out.println("Invalid entry.");
+                            //System.exit(0);
+                            valid = false;
                         }
                         break;
                     case ')':
                         if(!isOp(tempb) && tempb != ')') {
-                            System.out.println("Invalid entry.");
-                            System.exit(0);
+                            returnErrors.add("Invalid entry.");
+                            //System.out.println("Invalid entry.");
+                            //System.exit(0);
+                            valid = false;
                         }
                         break;
                     //this checks the char on both sides of the operator for validity
                     case '*': case '/': case '^':
                         if (!(Character.isDigit(tempa) || tempa == ')') || (!(Character.isDigit(tempb) || tempb == '(' || tempb == '-'))) {
-                            System.out.println("Operations are not correct! a");
-                            System.exit(0);
+                            returnErrors.add("Operations are not correct! a");
+                            //System.out.println("Operations are not correct!");
+                            //System.exit(0);
+                            valid = false;
                         }
                         break;
                     case '+': case '-':
                         if(!Character.isDigit(tempb) && (tempb == '*' || tempb == '/' || tempb == '^')) {
-                            System.out.println("Operations are not correct! b");
-                            System.exit(0);
+                            returnErrors.add("Operations are not correct!");
+                            //System.out.println("Operations are not correct! b");
+                            //System.exit(0);
+                            valid = false;
                         }
                         break;
                     default:
                         if(temp != '.') {
-                            System.out.println("Invalid character entered!");
-                            System.exit(0);
+                            returnErrors.add("Invalid character entered!");
+                            //System.out.println("Invalid character entered!");
+                            //System.exit(0);
+                            valid = false;
                         }
                 }
             }

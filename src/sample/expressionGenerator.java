@@ -2,20 +2,6 @@
 package sample;
 
 public class expressionGenerator {
-    public static void main (String args[]) {
-        String expression = "";
-        int first = (int) Math.floor(Math.random()*15)+2;
-        expression = expression + first;
-        int numOfNums = (int) Math.floor(Math.random() * 5) + 5; // 6 - 10
-        for(int i = 0; i < numOfNums - 1; i++) {
-            expression = expression + raNum();
-        }
-        System.out.println("Raw: " + expression);
-        expression = parExpression(expression);
-        System.out.println("Par: " + expression);
-        expression = validExpression(expression);
-        System.out.println("Fin: " + expression);
-    }
     public static String validExpression (String exp) {
         for (int i = 0; i < exp.length()-1; i++) {
             if (exp.charAt(i) == '(' && exp.charAt(i+1) == ')') {

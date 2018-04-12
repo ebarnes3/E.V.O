@@ -432,6 +432,9 @@ public class InToPost {
         }
         return steps;
     }
+    public void clearSteps(){
+        al.clear();
+    }
     //still working on it
     public String sub(){
         doubleNegative();
