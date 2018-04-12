@@ -184,6 +184,7 @@ public class HomeViewController {
             //check to see if input is valid
             String userInput = inputTextField.getText();
             InputChecker checker = new InputChecker();
+            checker.noVar(userInput);
             checker.parMatch(userInput);
             userInput = checker.dotCheck(userInput);
             userInput = checker.parenthesisOp(userInput);
