@@ -52,6 +52,23 @@ for (int i = 0; i < columnNames.size(); i++) {
                                 </Label>
                             </children>
                         </AnchorPane>
+                        <AnchorPane>
+                            <children>
+                                <Label fx:id="errorMessage" alignment="CENTER" contentDisplay="CENTER" text="" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <font>
+                                        <Font name="Futura Medium" size="15.0" />
+                                    </font>
+                                    <textFill>
+                                        <LinearGradient endX="1.0" endY="1.0">
+                                            <stops>
+                                                <Stop color="#ff0000" />
+                                                <Stop color="#ab4642" offset="1.0" />
+                                            </stops>
+                                        </LinearGradient>
+                                    </textFill>
+                                </Label>
+                            </children>
+                        </AnchorPane>
                         <VBox fx:id="keyboardVisability">
                             <children>
 

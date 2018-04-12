@@ -44,6 +44,9 @@ public class HomeViewController {
     private Label keyboardLabel;
 
     @FXML
+    private Label errorMessage;
+
+    @FXML
     private Button keyboardButton;
 
     @FXML
@@ -188,6 +191,8 @@ public class HomeViewController {
 
 
            if(checker.valid){
+               //remove error message
+               errorMessage.setText("");
                if(initialSolutionPane.isVisible()) {
                    //steps.clear();
 //                for(int i=0; i< steps.size(); i++){
@@ -242,7 +247,7 @@ public class HomeViewController {
 
            }else{
                //print errors
-               System.out.println(Arrays.toString(checker.returnErrors.toArray()));
+               errorMessage.setText(Arrays.toString(checker.returnErrors.toArray()));
            }
 
         });//end of goButton action handler
