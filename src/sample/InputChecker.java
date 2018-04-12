@@ -25,6 +25,16 @@ public class InputChecker {
     public InputChecker(){
 
     }
+    // this function ensures that no variables are allowed
+    public void noVar(String entry) {
+        for(int i=0; i<entry.length(); i++) {
+            if(Character.isLetter(entry.charAt(i)) && entry.charAt(i) != 'r'){
+                returnErrors.add("No variables allowed.");
+                valid = false;
+            }
+        }
+    }
+    
     //this function ensures that the parenthesis are correct
     public  void parMatch(String entry) {
         int parens = 0;
@@ -108,10 +118,12 @@ public class InputChecker {
     }
     //this function checks to make sure that if an operation or parenthesis is used that the character on both sides are valid
     public void validSimpChar (String entry) {
-        if((isOp(entry.charAt(0)) || isOp(entry.charAt(entry.length()-1))) && entry.charAt(0) != '-') {
-            returnErrors.add("First/Last character is invalid.");
-            //System.out.println("First/Last character is invalid.");
-            //System.exit(0);
+        if((isOp(entry.charAt(0)) && entry.charAt(0) != '-')) {
+            returnErrors.add("First character is invalid.");
+            valid = false;
+        }
+        if(isOp(entry.charAt(entry.length()-1))) {
+            returnErrors.add("Last character is invalid.");
             valid = false;
         }
         for (int i=1; i<entry.length()-1; i++) {
@@ -121,16 +133,16 @@ public class InputChecker {
             if (!Character.isDigit(temp)) {
                 switch(temp) {
                     case '(':
-                        if(!isOp(tempa) && tempa != '(') {
-                            returnErrors.add("Invalid entry.");
+                        if(!isOp(tempa) && tempa != '(' || tempb == 'r') {
+                            returnErrors.add("Illegal operator beside parenthesis.");
                             //System.out.println("Invalid entry.");
                             //System.exit(0);
                             valid = false;
                         }
                         break;
                     case ')':
-                        if(!isOp(tempb) && tempb != ')') {
-                            returnErrors.add("Invalid entry.");
+                        if(!isOp(tempb) && tempb != ')' || tempa == 'r') {
+                            returnErrors.add("Illegal operator beside parenthesis.");
                             //System.out.println("Invalid entry.");
                             //System.exit(0);
                             valid = false;
@@ -146,10 +158,16 @@ public class InputChecker {
                         }
                         break;
                     case '+': case '-':
-                        if(!Character.isDigit(tempb) && (tempb == '*' || tempb == '/' || tempb == '^')) {
+                        if(!Character.isDigit(tempb) && (tempb == '*' || tempb == '/' || tempb == '^' || tempb == 'r')) {
                             returnErrors.add("Operations are not correct!");
                             //System.out.println("Operations are not correct! b");
                             //System.exit(0);
+                            valid = false;
+                        }
+                        break;
+                    case 'r':
+                        if(tempa == '.') {
+                            returnErrors.add("Operations are not correct!");
                             valid = false;
                         }
                         break;
@@ -166,7 +184,7 @@ public class InputChecker {
     }
     //return true if the character inputed is an operation
     public static boolean isOp (char entry) {
-        if (entry == '+' || entry == '-' || entry == '/' || entry == '*' || entry == '^') {
+        if (entry == '+' || entry == '-' || entry == '/' || entry == '*' || entry == '^' || entry == 'r') {
             return true;
         }
         return false;
