@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="evo.mathApp.view.PGController">
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" />
+            <Label alignment="CENTER" prefHeight="150.0" prefWidth="286.0" text="PROBLEM GENERATOR" underline="true">
+               <font>
+                  <Font name="Futura Medium" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="pgButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="440.0" text="Commence Practice">
+               <VBox.margin>
+                  <Insets left="75.0" />
+               </VBox.margin>
+            </Button>
+            <Pane fx:id="pgPane" prefHeight="194.0" prefWidth="600.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="600.0">
+                     <children>
+                        <Label alignment="CENTER" layoutX="1.0" layoutY="54.0" prefHeight="74.0" prefWidth="598.0" text="Generated Problem Goes Here" textFill="#22ae0f" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="63.0">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></Pane>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>
