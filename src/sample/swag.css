@@ -1,8 +1,7 @@
 .root {
-    /* -fx-background-color: #383838;*/
     -fx-background-image: url("background.jpg");
 }
 .button {
-    -fx-background-color: linear-gradient(#dc9656, #ab4642);
+    -fx-background-color: linear-gradient(#c2c2f0, #8585e0);
     -fx-text-fill: white;
 }

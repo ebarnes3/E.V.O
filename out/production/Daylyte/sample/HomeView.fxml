@@ -44,8 +44,8 @@ for (int i = 0; i < columnNames.size(); i++) {
                                     <textFill>
                                         <LinearGradient endX="1.0" endY="1.0">
                                             <stops>
-                                                <Stop color="#dc9656" />
-                                                <Stop color="#ab4642" offset="1.0" />
+                                                <Stop color="#141452" />
+                                                <Stop color="#8585e0" offset="1.0" />
                                             </stops>
                                         </LinearGradient>
                                     </textFill>

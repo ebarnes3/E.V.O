@@ -1,6 +1,6 @@
-package evo.mathApp.view;
+package sample;
 
-import evo.mathApp.MainApp;
+import sample.MainApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;

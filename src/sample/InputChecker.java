@@ -8,7 +8,7 @@ public class InputChecker {
     HashSet<String> returnErrors = new HashSet<String>();
     Boolean valid = true;
 
-//    public static void main (String args[]) {
+    //    public static void main (String args[]) {
 //        String userInput;
 //        //ask user for input until the input is not an empty string
 //        do {
@@ -34,7 +34,7 @@ public class InputChecker {
             }
         }
     }
-    
+
     //this function ensures that the parenthesis are correct
     public  void parMatch(String entry) {
         int parens = 0;
@@ -91,7 +91,7 @@ public class InputChecker {
                     if(dotCount>1){
                         returnErrors.add("Incorrect decimals detected");
                         //System.out.println("Incorrect decimals detected");
-                       // System.exit(0);
+                        // System.exit(0);
                         valid = false;
                     }
                 }

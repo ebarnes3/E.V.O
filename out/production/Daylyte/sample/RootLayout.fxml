@@ -10,28 +10,14 @@
 
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.RootViewController">
    <top>
-      <MenuBar nodeOrientation="LEFT_TO_RIGHT" BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="Home" />
-          <Menu mnemonicParsing="false" text="Common Input Functions" />
-            <Menu mnemonicParsing="false" text="Problem Generator" />
-            <Menu mnemonicParsing="false" text="Videos" />
-        </menus>
-         <padding>
-            <Insets left="170.0" />
-         </padding>
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-      </MenuBar>
    </top>
    <bottom>
       <HBox alignment="CENTER" spacing="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="| E.V.O |" />
-            <Label text="| CSC 4350 |" />
-            <Label text="| Bhola |" />
-            <Label text="| Spring 2017 |" />
+            <Label text="| E.V.O |" style="-fx-background-color: #ffffff"/>
+            <Label text="| CSC 4350 |" style="-fx-background-color: #ffffff" />
+            <Label text="| Bhola |" style="-fx-background-color: #ffffff"/>
+            <Label text="| Spring 2017 |" style="-fx-background-color: #ffffff"/>
          </children>
          <BorderPane.margin>
             <Insets bottom="15.0" />
