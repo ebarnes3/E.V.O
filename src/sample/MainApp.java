@@ -1,13 +1,17 @@
 package sample;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import javafx.animation.FadeTransition;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import sample.HomeViewController;
 import sample.PGController;
 import javafx.application.Application;
@@ -33,13 +37,45 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
         this.primaryStage.setTitle("MathApp");
-
-
         initRootLayout();
-        showHomeView();
+        loadSplashScreen();
+//        initRootLayout();
+//        showHomeView();
 
 	}
-	
+	public void loadSplashScreen(){
+
+        try{
+            StackPane pane = FXMLLoader.load(getClass().getResource(("Splash.fxml")));
+            rootLayout.setCenter(pane);
+
+
+//            BorderPane pane = FXMLLoader.load(getClass().getResource(("Splash.fxml")));
+//            rootLayout.setCenter(pane);
+            FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), pane);
+            fadeIn.setFromValue(0);
+            fadeIn.setToValue(1);
+            fadeIn.setCycleCount(1);
+
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), pane);
+            fadeOut.setFromValue(1);
+            fadeOut.setToValue(0);
+            fadeOut.setCycleCount(1);
+
+            fadeIn.play();
+
+            fadeIn.setOnFinished((e) -> {
+                fadeOut.play();
+            });
+
+            fadeOut.setOnFinished((e) -> {
+                showHomeView();
+            });
+        }catch (IOException ex){
+
+        }
+
+    }
 	 public void initRootLayout() {
 	        try {
 	            // Load root layout from fxml file.
@@ -194,24 +230,37 @@ public class MainApp extends Application {
          }
      }
      private void getPractiveView(){
+         /* Set the Nimbus look and feel */
+         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+          */
          try {
-             // Load person overview.
-             FXMLLoader loader = new FXMLLoader();
-             loader.setLocation(MainApp.class.getResource("PracticeView.fxml"));
-             BorderPane HomeView = (BorderPane) loader.load();
-
-             // Set person overview into the center of root layout.
-             rootLayout.setCenter(HomeView);
-
-
-             // Give the controller access to the main app.
-             PracticeView controller = loader.getController();
-             controller.setMainApp(this);
-
-         } catch (IOException e) {
-             e.printStackTrace();
-             System.out.println("Error!");
+             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                 if ("Nimbus".equals(info.getName())) {
+                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                     break;
+                 }
+             }
+         } catch (ClassNotFoundException ex) {
+             java.util.logging.Logger.getLogger(InputBox.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         } catch (InstantiationException ex) {
+             java.util.logging.Logger.getLogger(InputBox.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         } catch (IllegalAccessException ex) {
+             java.util.logging.Logger.getLogger(InputBox.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+             java.util.logging.Logger.getLogger(InputBox.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
          }
+         //</editor-fold>
+
+         /* Create and display the form */
+         java.awt.EventQueue.invokeLater(new Runnable() {
+             public void run() {
+                 InputBox newBox = new InputBox();
+                 newBox.setLocationRelativeTo(null);
+                 newBox.show();
+             }
+         });
      }
 
 //	 private BorderPane addProblemGenerator() {
