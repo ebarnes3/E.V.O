@@ -1,6 +1,5 @@
 package sample;
 
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -10,7 +9,6 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -33,11 +31,9 @@ public class MathTraining extends javax.swing.JFrame {
     final int PADDING_TOP = 60;
     final int TOKEN_PADDING = 6;
     final Font LABEL_FONT = new Font("Courier New", Font.BOLD, 50);
-    final Color COLOR_VALID_MOVE = new Color(50, 180, 10);
+    final Color COLOR_VALID_MOVE = new Color(0, 0, 10);
     final Color COLOR_OVERLAP = new Color(100, 255, 10);
     final Color COLOR_INVALID_MOVE = new Color(255,0,0);
-
-
     ExpressionTree tree;
     HashMap<JLabel, TokenLabelGroup> labelToTokenGroupMap
             = new HashMap<>();
@@ -116,7 +112,7 @@ public class MathTraining extends javax.swing.JFrame {
                         label.setForeground(COLOR_VALID_MOVE);
                     }
                 }else{
-                    System.out.println(label.getText());
+                    //System.out.println(label.getText());
                     if (isOverlapping(activeLabel.label, label) && Character.isDigit(label.getText().charAt(0))) {
                         label.setForeground(COLOR_INVALID_MOVE);
                     }
@@ -188,7 +184,7 @@ public class MathTraining extends javax.swing.JFrame {
     }
 
     private void complete() {
-        JOptionPane.showMessageDialog(this, "\\Woo/");
+        JOptionPane.showMessageDialog(this, "Congratulations!");
     }
 
     public JLabel createLabel(String text) {

@@ -1,6 +1,4 @@
 package sample;
-
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -582,7 +580,7 @@ public class ExpressionTree {
         }
         boolean sameParent = token1.collapsedNode.getNonUnaryParent()
                 == token2.collapsedNode.getNonUnaryParent();
-        // If they have the same parent, test to see if there's a close
+        // If they have the same parent, test to see if there's a close 
         // parenthesis in the middle.
         if (sameParent) {
             int index1 = tokens.indexOf(token1);
@@ -694,6 +692,7 @@ public class ExpressionTree {
                 node2.value = result;
                 node2.token.tokenString = node2.getTokenString();
             } else if (precedence == 1) {
+                double result = node1.evaluate();
                 if (parent1.operator == Operator.MULTIPLY
                         || parent1.operator == Operator.DIVIDE
                         && node1 == parent1.rightChild) {
@@ -707,7 +706,6 @@ public class ExpressionTree {
                     node1.token.tokenString = node1.getTokenString();
                 }
 
-                double result = node1.evaluate();
                 if (parent1.operator == Operator.DIVIDE && node1 == parent1.rightChild) {
                     result = 1.0 / result;
                 }

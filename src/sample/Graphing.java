@@ -1,26 +1,44 @@
 package sample;
 
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class Graphing extends javax.swing.JFrame {
 
+    GraphingTree tree = new GraphingTree();
     Point offset = new Point();
     Point prevMousePos = new Point(-100, -100);
-    float scale = 1;
+    double scale = 1;
     BufferedImage bufferedImage;
     Graphics bufferedGraphics;
-    float tracerOffset = 0;
+    double tracerOffset = 0;
+    Point mouseOnGraph = new Point();
 
     public Graphing() {
         initComponents();
+        processExpression();
+    }
+
+    public void processExpression() {
+        String expression = txtEquation.getText();
+        expression = InputVarChecker.validate(expression);
+        if (expression == null) {
+            JOptionPane.showMessageDialog(this, "Invalid input expression.");
+            return;
+        }
+        txtEquation.setText(expression);
+        tree.parse(expression);
     }
 
     public void graph(Graphics g) {
+        if (tree == null) {
+            return;
+        }
         if (bufferedGraphics == null) {
             refreshBufferedImage();
         }
@@ -37,8 +55,9 @@ public class Graphing extends javax.swing.JFrame {
                 graphPanel.getWidth(), center.y);
         bufferedGraphics.setColor(Color.RED);
         for (int i = 0; i < graphPanel.getWidth(); i++) {
-            float x = (float) (i - center.x) / scale;
-            float y = (float) (Math.sin(x/20)* 50);
+            double x = (double) (i - center.x) / scale;
+            tree.variableValue = x;
+            double y = tree.evaluate();
             Point currentPoint = new Point(i, center.y - (int) (y * scale));
             bufferedGraphics.drawLine(prevPoint.x, prevPoint.y, currentPoint.x, currentPoint.y);
             prevPoint = currentPoint;
@@ -47,10 +66,10 @@ public class Graphing extends javax.swing.JFrame {
         xEqualsLabel.setText("");
         if (traceCheck.isSelected()) {
             bufferedGraphics.setColor(Color.BLUE);
-            Point tracerOffPoint = MouseInfo.getPointerInfo().getLocation();
-            float tracerOff = tracerOffPoint.x - graphPanel.getWidth()/2;
-            float traceX = (float) (tracerOff - offset.x) / scale;
-            float traceY = (float) (Math.sin(traceX/20)* 50);
+            double tracerOff = mouseOnGraph.x - graphPanel.getWidth() / 2;
+            double traceX = (float) (tracerOff - offset.x) / scale;
+            tree.variableValue = traceX;
+            double traceY = tree.evaluate();
             Point tracer = new Point((int) (center.x + traceX * scale),
                     center.y - (int) (traceY * scale));
             int tracerSize = (int) (5 * Math.pow(scale, .5));
@@ -75,10 +94,12 @@ public class Graphing extends javax.swing.JFrame {
                 graph(g);
             }
         };
-        equation = new javax.swing.JLabel();
         traceCheck = new javax.swing.JCheckBox();
         yEqualsLabel = new javax.swing.JLabel();
         xEqualsLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        btnGraph = new javax.swing.JButton();
+        txtEquation = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Graph");
@@ -118,10 +139,8 @@ public class Graphing extends javax.swing.JFrame {
         );
         graphPanelLayout.setVerticalGroup(
                 graphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 281, Short.MAX_VALUE)
+                        .addGap(0, 252, Short.MAX_VALUE)
         );
-
-        equation.setText("y = sin(x)");
 
         traceCheck.setText("Trace");
         traceCheck.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +153,17 @@ public class Graphing extends javax.swing.JFrame {
 
         xEqualsLabel.setText("jLabel2");
 
+        jLabel1.setText("y=");
+
+        btnGraph.setText("Graph");
+        btnGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraphActionPerformed(evt);
+            }
+        });
+
+        txtEquation.setText("x");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,24 +175,34 @@ public class Graphing extends javax.swing.JFrame {
                                                 .addComponent(graphPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGap(10, 10, 10))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(equation)
-                                                .addGap(18, 18, 18)
                                                 .addComponent(yEqualsLabel)
-                                                .addGap(18, 18, 18)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(xEqualsLabel)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
                                                 .addComponent(traceCheck)
+                                                .addContainerGap())
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtEquation)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnGraph)
                                                 .addContainerGap())))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel1)
+                                                .addComponent(btnGraph))
+                                        .addComponent(txtEquation, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(graphPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(traceCheck)
-                                        .addComponent(equation)
                                         .addComponent(yEqualsLabel)
                                         .addComponent(xEqualsLabel))
                                 .addContainerGap())
@@ -210,8 +250,15 @@ public class Graphing extends javax.swing.JFrame {
     }//GEN-LAST:event_traceCheckActionPerformed
 
     private void graphPanelMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graphPanelMouseMoved
+        mouseOnGraph.x = evt.getX();
+        mouseOnGraph.y = evt.getY();
         graph(graphPanel.getGraphics());
     }//GEN-LAST:event_graphPanelMouseMoved
+
+    private void btnGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraphActionPerformed
+        processExpression();
+        graph(graphPanel.getGraphics());
+    }//GEN-LAST:event_btnGraphActionPerformed
 
     private void refreshBufferedImage() {
         bufferedImage = new BufferedImage(graphPanel.getWidth(),
@@ -220,26 +267,30 @@ public class Graphing extends javax.swing.JFrame {
     }
 
     public static void main(String args[]) {
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Graphing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//
-//        java.awt.EventQueue.invokeLater(() -> {
-//            new Graphing().setVisible(true);
-//        });
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Graphing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        java.awt.EventQueue.invokeLater(() -> {
+            Graphing graphing = new Graphing();
+            graphing.setLocationRelativeTo(null);
+            graphing.setVisible(true);
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel equation;
+    private javax.swing.JButton btnGraph;
     private javax.swing.JPanel graphPanel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JCheckBox traceCheck;
+    private javax.swing.JTextField txtEquation;
     private javax.swing.JLabel xEqualsLabel;
     private javax.swing.JLabel yEqualsLabel;
     // End of variables declaration//GEN-END:variables
