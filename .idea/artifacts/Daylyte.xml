@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Daylyte">
+    <output-path>$PROJECT_DIR$/out/artifacts/Daylyte</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="sample.MainApp" />
+        <option name="description" value="Mathematics Learning Application" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="DayLyte" />
+        <option name="vendor" value="EVO" />
+        <option name="version" value="1.0" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="Daylyte.jar">
+        <element id="module-output" name="Daylyte" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Daylyte" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/ExpressionTree.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/InputBox.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/MathTraining.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/Splash.fxml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/SplashFXMLController.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/Daylyte/sample/MainApp.class" afterPath="$PROJECT_DIR$/out/production/Daylyte/sample/MainApp.class" />
-      <change beforePath="$PROJECT_DIR$/src/sample/MainApp.java" afterPath="$PROJECT_DIR$/src/sample/MainApp.java" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,8 +69,8 @@
       <file leaf-file-name="MainApp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/MainApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1475">
-              <caret line="262" column="12" lean-forward="false" selection-start-line="262" selection-start-column="12" selection-end-line="262" selection-end-column="12" />
+            <state relative-caret-position="82">
+              <caret line="105" column="15" lean-forward="true" selection-start-line="105" selection-start-column="15" selection-end-line="105" selection-end-column="15" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#8310#8397#0" expanded="true" />
@@ -87,7 +86,7 @@
       <file leaf-file-name="ExpressionTree.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/ExpressionTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25839">
+            <state relative-caret-position="736">
               <caret line="783" column="1" lean-forward="false" selection-start-line="783" selection-start-column="1" selection-end-line="783" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -144,7 +143,7 @@
       <file leaf-file-name="MathTraining.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/MathTraining.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
+            <state relative-caret-position="736">
               <caret line="226" column="1" lean-forward="false" selection-start-line="226" selection-start-column="1" selection-end-line="226" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -298,12 +297,16 @@
     <property name="dynamic.classpath" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../E.V.O-master" />
     <property name="SearchEverywhereHistoryKey" value="getprobl&#9;PSI&#9;JAVA://sample.MainApp#getProblemGeneratorView&#10;getHomeView&#9;PSI&#9;JAVA://sample.MainApp#getHomeView" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="daylyte" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -479,12 +482,12 @@
       <workItem from="1523404438345" duration="17173000" />
       <workItem from="1523749398093" duration="10978000" />
       <workItem from="1523984970831" duration="383000" />
-      <workItem from="1523985392582" duration="5016000" />
+      <workItem from="1523985392582" duration="6123000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36253000" />
+    <option name="totallyTimeSpent" value="37360000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="3226" height="1766" extended-state="6" />
@@ -975,7 +978,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/ExpressionTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25839">
+        <state relative-caret-position="736">
           <caret line="783" column="1" lean-forward="false" selection-start-line="783" selection-start-column="1" selection-end-line="783" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1013,7 +1016,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/MathTraining.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
+        <state relative-caret-position="736">
           <caret line="226" column="1" lean-forward="false" selection-start-line="226" selection-start-column="1" selection-end-line="226" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1044,8 +1047,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/MainApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1475">
-          <caret line="262" column="12" lean-forward="false" selection-start-line="262" selection-start-column="12" selection-end-line="262" selection-end-column="12" />
+        <state relative-caret-position="82">
+          <caret line="105" column="15" lean-forward="true" selection-start-line="105" selection-start-column="15" selection-end-line="105" selection-end-column="15" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#8310#8397#0" expanded="true" />
@@ -1063,7 +1066,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>JavaFXApp</last-edited>
+          <last-edited>Daylyte</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
