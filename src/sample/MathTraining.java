@@ -35,6 +35,9 @@ public class MathTraining extends javax.swing.JFrame {
     final Font LABEL_FONT = new Font("Courier New", Font.BOLD, 50);
     final Color COLOR_VALID_MOVE = new Color(50, 180, 10);
     final Color COLOR_OVERLAP = new Color(100, 255, 10);
+    final Color COLOR_INVALID_MOVE = new Color(255,0,0);
+
+
     ExpressionTree tree;
     HashMap<JLabel, TokenLabelGroup> labelToTokenGroupMap
             = new HashMap<>();
@@ -111,6 +114,11 @@ public class MathTraining extends javax.swing.JFrame {
                         potentialLabel = labelToTokenGroupMap.get(label);
                     } else {
                         label.setForeground(COLOR_VALID_MOVE);
+                    }
+                }else{
+                    System.out.println(label.getText());
+                    if (isOverlapping(activeLabel.label, label) && Character.isDigit(label.getText().charAt(0))) {
+                        label.setForeground(COLOR_INVALID_MOVE);
                     }
                 }
             }
